@@ -1,9 +1,9 @@
 //
 //  ViewController.swift
-//  MidiTest
+//  Patty Player
 //
-//  Created by Jong Wook Kim on 11/13/17.
-//  Copyright © 2017 Jong Wook Kim. All rights reserved.
+//  Created by Brad & Dave-O on 11/13/17.
+//  Copyright © 2017 Brad & Dave-0. All rights reserved.
 //
 
 import UIKit
