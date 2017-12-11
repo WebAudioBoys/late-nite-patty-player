@@ -17,6 +17,7 @@ class ViewController: UIViewController, NetServiceBrowserDelegate {
     var mode = -1
     var playing: Int = -1
     var pattern: Int = 0
+    var nextPattern: Int = 0
     var step: Int = 0
     
     var beats: [[[Int]]] = [
@@ -133,6 +134,10 @@ class ViewController: UIViewController, NetServiceBrowserDelegate {
         self.playing = self.playing * -1
         if (playing == 1) {
             timer = Timer.scheduledTimer(withTimeInterval: self.tempoVal, repeats: true) { timer in
+                if (self.step == 0 && self.pattern != self.nextPattern) {
+                    self.pattern = self.nextPattern
+                    self.modeLabel.text = String(self.pattern + 1)
+                }
                 if (self.beats[self.pattern][0][self.step] == 1) {
                     self.sendMessage(0x90, 0x2a, UInt8(self.velocityVal))
                     self.sendMessage(0x80, 0x2a, 0x7f)
@@ -165,7 +170,6 @@ class ViewController: UIViewController, NetServiceBrowserDelegate {
     
     @IBAction func velocityChange(_ sender: Any) {
         velocityVal = floor(velocity.value * 127)
-        print(velocityVal)
     }
     
     @IBAction func kick(_ sender: Any) {
@@ -173,8 +177,7 @@ class ViewController: UIViewController, NetServiceBrowserDelegate {
             sendMessage(0x90, 0x24, UInt8(velocityVal))
             sendMessage(0x80, 0x24, 0x7f)
         } else {
-            self.pattern = 0
-            self.modeLabel.text = String(self.pattern + 1)
+            self.nextPattern = 0
         }
     }
     
@@ -183,8 +186,7 @@ class ViewController: UIViewController, NetServiceBrowserDelegate {
             sendMessage(0x90, 0x25, UInt8(velocityVal))
             sendMessage(0x80, 0x25, 0x7f)
         } else {
-            self.pattern = 1
-            self.modeLabel.text = String(self.pattern + 1)
+            self.nextPattern = 1
         }
     }
     
@@ -193,8 +195,7 @@ class ViewController: UIViewController, NetServiceBrowserDelegate {
             sendMessage(0x90, 0x26, UInt8(velocityVal))
             sendMessage(0x80, 0x26, 0x7f)
         } else {
-            self.pattern = 2
-            self.modeLabel.text = String(self.pattern + 1)
+            self.nextPattern = 2
         }
     }
     
@@ -203,8 +204,7 @@ class ViewController: UIViewController, NetServiceBrowserDelegate {
             sendMessage(0x90, 0x27, UInt8(velocityVal))
             sendMessage(0x80, 0x27, 0x7f)
         } else {
-            self.pattern = 3
-            self.modeLabel.text = String(self.pattern + 1)
+            self.nextPattern = 3
         }
     }
     
@@ -213,8 +213,7 @@ class ViewController: UIViewController, NetServiceBrowserDelegate {
             sendMessage(0x90, 0x2a, UInt8(velocityVal))
             sendMessage(0x80, 0x2a, 0x7f)
         } else {
-            self.pattern = 4
-            self.modeLabel.text = String(self.pattern + 1)
+            self.nextPattern = 4
         }
     }
     
@@ -223,8 +222,7 @@ class ViewController: UIViewController, NetServiceBrowserDelegate {
             sendMessage(0x90, 0x2e, UInt8(velocityVal))
             sendMessage(0x80, 0x2e, 0x7f)
         } else {
-            self.pattern = 5
-            self.modeLabel.text = String(self.pattern + 1)
+            self.nextPattern = 5
         }
     }
     
@@ -233,8 +231,7 @@ class ViewController: UIViewController, NetServiceBrowserDelegate {
             sendMessage(0x90, 0x2d, UInt8(velocityVal))
             sendMessage(0x80, 0x2d, 0x7f)
         } else {
-            self.pattern = 6
-            self.modeLabel.text = String(self.pattern + 1)
+            self.nextPattern = 6
         }
     }
     
@@ -243,8 +240,7 @@ class ViewController: UIViewController, NetServiceBrowserDelegate {
             sendMessage(0x90, 0x2f, UInt8(velocityVal))
             sendMessage(0x80, 0x2f, 0x7f)
         } else {
-            self.pattern = 7
-            self.modeLabel.text = String(self.pattern + 1)
+            self.nextPattern = 7
         }
     }
     
@@ -253,8 +249,7 @@ class ViewController: UIViewController, NetServiceBrowserDelegate {
             sendMessage(0x90, 0x30, UInt8(velocityVal))
             sendMessage(0x80, 0x30, 0x7f)
         } else {
-            self.pattern = 8
-            self.modeLabel.text = String(self.pattern + 1)
+            self.nextPattern = 8
         }
     }
     
@@ -263,8 +258,7 @@ class ViewController: UIViewController, NetServiceBrowserDelegate {
             sendMessage(0x90, 0x31, UInt8(velocityVal))
             sendMessage(0x80, 0x31, 0x7f)
         } else {
-            self.pattern = 9
-            self.modeLabel.text = String(self.pattern + 1)
+            self.nextPattern = 9
         }
     }
     
@@ -273,8 +267,7 @@ class ViewController: UIViewController, NetServiceBrowserDelegate {
             sendMessage(0x90, 0x38, UInt8(velocityVal))
             sendMessage(0x80, 0x38, 0x7f)
         } else {
-            self.pattern = 10
-            self.modeLabel.text = String(self.pattern + 1)
+            self.nextPattern = 10
         }
     }
     
@@ -283,8 +276,7 @@ class ViewController: UIViewController, NetServiceBrowserDelegate {
             sendMessage(0x90, 0x40, UInt8(velocityVal))
             sendMessage(0x80, 0x40, 0x7f)
         } else {
-            self.pattern = 11
-            self.modeLabel.text = String(self.pattern + 1)
+            self.nextPattern = 11
         }
     }
     
@@ -293,8 +285,7 @@ class ViewController: UIViewController, NetServiceBrowserDelegate {
             sendMessage(0x90, 0x3f, UInt8(velocityVal))
             sendMessage(0x80, 0x3f, 0x7f)
         } else {
-            self.pattern = 12
-            self.modeLabel.text = String(self.pattern + 1)
+            self.nextPattern = 12
         }
     }
     
@@ -303,8 +294,7 @@ class ViewController: UIViewController, NetServiceBrowserDelegate {
             sendMessage(0x90, 0x3e, UInt8(velocityVal))
             sendMessage(0x80, 0x3e, 0x7f)
         } else {
-            self.pattern = 13
-            self.modeLabel.text = String(self.pattern + 1)
+            self.nextPattern = 13
         }
     }
     
@@ -313,8 +303,7 @@ class ViewController: UIViewController, NetServiceBrowserDelegate {
             sendMessage(0x90, 0x46, UInt8(velocityVal))
             sendMessage(0x80, 0x46, 0x7f)
         } else {
-            self.pattern = 14
-            self.modeLabel.text = String(self.pattern + 1)
+            self.nextPattern = 14
         }
     }
     
@@ -323,8 +312,7 @@ class ViewController: UIViewController, NetServiceBrowserDelegate {
             sendMessage(0x90, 0x4b, UInt8(velocityVal))
             sendMessage(0x80, 0x4b, 0x7f)
         } else {
-            self.pattern = 15
-            self.modeLabel.text = String(self.pattern + 1)
+            self.nextPattern = 15
         }
     }
     
